@@ -12,9 +12,16 @@ RUN \
 
 COPY . .
 
+RUN addgroup -g 1001 -S nextjs && \
+    adduser -u 1001 -S nextjs -G nextjs
+
+RUN chown -R nextjs:nextjs /app
+
 # Next.js collects completely anonymous telemetry data about general usage. Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line to disable telemetry at run time
 # ENV NEXT_TELEMETRY_DISABLED 1
+
+USER nextjs
 
 CMD \
   if [ -f yarn.lock ]; then yarn dev; \
