@@ -8,7 +8,7 @@ on:
 env:
   IMAGE_NAME: codegaf/my-ecomerce-front
   SHA: ${{ github.event.pull_request.head.sha || github.event.after }}
-  DOCKERFILE_PATH: ./docker/develop/Dockerfile
+  DOCKERFILE_PATH: ./dev.Dockerfile
 
 jobs:
   build:
@@ -43,7 +43,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request_target' }}
         uses: docker/build-push-action@v4
         with:
-          context: ./docker/develop
+          context: .
           load: false
           push: true
           tags: ${{ steps.meta.outputs.tags }}
