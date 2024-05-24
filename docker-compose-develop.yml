@@ -2,7 +2,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: ./docker/develop/Dockerfile
+      dockerfile: dev.Dockerfile
     container_name: nextjs
     environment:
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
