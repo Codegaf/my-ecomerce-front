@@ -1,0 +1,22 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/develop/Dockerfile
+    container_name: nextjs
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+    volumes:
+      - .:/app
+    ports:
+      - "8080:80"
+    networks:
+      - my-ecommerce-frontend
+      - my-ecommerce-backend
+
+networks:
+  my-ecommerce-frontend:
+    name: my-ecommerce-frontend
+    driver: bridge
+  my-ecommerce-backend:
+    external: true
