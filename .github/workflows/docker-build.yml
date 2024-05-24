@@ -43,7 +43,8 @@ jobs:
         if: ${{ github.event_name != 'pull_request_target' }}
         uses: docker/build-push-action@v4
         with:
-          context: ./dev.Dockerfile
+          context: .
+          file: ./dev.Dockerfile
           load: false
           push: true
           tags: ${{ steps.meta.outputs.tags }}
