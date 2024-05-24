@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN addgroup -g 1001 -S nextjs && \
     adduser -u 1001 -S nextjs -G nextjs \
-    && chown -R nextjs:nextjs /app
+    && sudo chown -R nextjs:nextjs /app
 
 USER nextjs
 
