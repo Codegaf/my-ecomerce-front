@@ -2,12 +2,6 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-RUN addgroup -g 1001 -S nextjs && \
-    adduser -u 1001 -S nextjs -G nextjs \
-    && sudo chown -R nextjs:nextjs .
-
-USER nextjs
-
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
@@ -24,7 +18,9 @@ COPY . .
 # Uncomment the following line to disable telemetry at run time
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-
+RUN addgroup -g 1001 -S nextjs && \
+    adduser -u 1001 -S nextjs -G nextjs \
+    && chown -R nextjs:nextjs .
 
 CMD \
   if [ -f yarn.lock ]; then yarn dev; \
